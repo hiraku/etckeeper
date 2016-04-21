@@ -109,14 +109,16 @@ fi
 cd "$ETCKEEPER_DIR"
 export ETCKEEPER_DIR
 
-if [ -d ".git" ]; then
-	VCS=git
-elif [ -d ".hg" ]; then
-	VCS=hg
-elif [ -d "_darcs" ]; then
-	VCS=darcs
-elif [ -d ".bzr" ]; then
-	VCS=bzr
+if [ -z "$VCS" ]; then
+	if [ -d ".git" ]; then
+		VCS=git
+	elif [ -d ".hg" ]; then
+		VCS=hg
+	elif [ -d "_darcs" ]; then
+		VCS=darcs
+	elif [ -d ".bzr" ]; then
+		VCS=bzr
+	fi
 fi
 
 if [ -z "$VCS" ]; then
